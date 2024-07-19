@@ -4,14 +4,14 @@ import * as React from "react";
 import "@rainbow-me/rainbowkit/styles.css";
 import { RainbowKitProvider, getDefaultConfig } from "@rainbow-me/rainbowkit";
 
-import { bsc, bscTestnet } from "wagmi/chains";
+import { sepolia } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 
 export const config = getDefaultConfig({
-  appName: "GEPS Dapp",
+  appName: "Domain Minting Dapp",
   projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID!,
-  chains: [bsc, bscTestnet],
+  chains: [sepolia],
   ssr: true,
 });
 

@@ -1,98 +1,162 @@
-export const WALLET_FACTORY_ADDRESS =
-  "0x86beBfc804F9784b638B5B20f0577887c5B62A2e";
+export const DOMAIN_MINITING_ADDRESS =
+  "0xd2EeE0088eBCFFf4ff69830298c310FB99BDC0A1";
 
-export const BUNDLER_RPC_URL = `https://api.stackup.sh/v1/node/${process.env.NEXT_PUBLIC_STACKUP_API_KEY}`;
-
-export const WALLET_FACTORY_ABI = [
+export const DOMAIN_MINITING_ABI = [
   {
-    type: "constructor",
     inputs: [
       {
-        name: "_entryPoint",
+        internalType: "string",
+        name: "domain",
+        type: "string",
+      },
+      {
+        internalType: "address",
+        name: "wallet",
         type: "address",
-        internalType: "contract IEntryPoint",
       },
     ],
+    name: "addWalletToDomain",
+    outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
   },
   {
-    type: "function",
-    name: "createAccount",
+    anonymous: false,
     inputs: [
-      { name: "owners", type: "address[]", internalType: "address[]" },
-      { name: "salt", type: "uint256", internalType: "uint256" },
+      {
+        indexed: true,
+        internalType: "string",
+        name: "domain",
+        type: "string",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "address[]",
+        name: "wallets",
+        type: "address[]",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "points",
+        type: "uint256",
+      },
     ],
-    outputs: [{ name: "", type: "address", internalType: "contract Wallet" }],
+    name: "DomainMinted",
+    type: "event",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "domain",
+        type: "string",
+      },
+    ],
+    name: "mintDomain",
+    outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
   },
   {
-    type: "function",
-    name: "getWalletAddress",
     inputs: [
-      { name: "owners", type: "address[]", internalType: "address[]" },
-      { name: "salt", type: "uint256", internalType: "uint256" },
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
     ],
-    outputs: [{ name: "", type: "address", internalType: "address" }],
+    name: "domainExists",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
     stateMutability: "view",
-  },
-  {
     type: "function",
-    name: "walletImplementation",
-    inputs: [],
-    outputs: [{ name: "", type: "address", internalType: "contract Wallet" }],
-    stateMutability: "view",
   },
-] as const;
-
-export const ENTRY_POINT_ABI = [
   {
     inputs: [
       {
         internalType: "address",
-        name: "sender",
+        name: "wallet",
         type: "address",
       },
+    ],
+    name: "getDomainByWallet",
+    outputs: [
       {
-        internalType: "uint192",
-        name: "key",
-        type: "uint192",
+        internalType: "string",
+        name: "",
+        type: "string",
       },
     ],
-    name: "getNonce",
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "domain",
+        type: "string",
+      },
+    ],
+    name: "getPointsByDomain",
     outputs: [
       {
         internalType: "uint256",
-        name: "nonce",
+        name: "",
         type: "uint256",
       },
     ],
     stateMutability: "view",
     type: "function",
   },
-] as const;
-
-export const WALLET_ABI = [
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "domain",
+        type: "string",
+      },
+    ],
+    name: "getWalletsByDomain",
+    outputs: [
+      {
+        internalType: "address[]",
+        name: "",
+        type: "address[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
   {
     inputs: [
       {
         internalType: "address",
-        name: "dest",
+        name: "",
         type: "address",
       },
+    ],
+    name: "walletToUsername",
+    outputs: [
       {
-        internalType: "uint256",
-        name: "value",
-        type: "uint256",
-      },
-      {
-        internalType: "bytes",
-        name: "func",
-        type: "bytes",
+        internalType: "string",
+        name: "",
+        type: "string",
       },
     ],
-    name: "execute",
-    outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "view",
     type: "function",
   },
 ] as const;

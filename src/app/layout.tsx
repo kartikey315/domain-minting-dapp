@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-[#09090B]`}>
         <Web3Providers>
           <div className="flex flex-col min-h-screen">
             <Navbar />

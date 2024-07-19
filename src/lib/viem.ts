@@ -1,10 +1,9 @@
-import { createPublicClient, http } from 'viem';
-import { mainnet, sepolia } from 'viem/chains';
+import { http, createConfig } from "@wagmi/core";
+import { mainnet, sepolia } from "@wagmi/core/chains";
 
-const chain = process.env.NEXT_PUBLIC_ENVIRONMENT == "development" ? sepolia : mainnet;
-const transport = http(process.env.NEXT_PUBLIC_ALCHEMY_RPC);
- 
-export const publicClient = createPublicClient({
-  chain: chain,
-  transport: transport,
+export const config = createConfig({
+  chains: [sepolia],
+  transports: {
+    [sepolia.id]: http(),
+  },
 });
